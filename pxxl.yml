@@ -1,0 +1,7 @@
+build:
+  image: python:3.11
+  run:
+    - pip install -r requirements.txt
+
+start:
+  cmd: python src/main.py
