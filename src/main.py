@@ -6,6 +6,7 @@ from datetime import datetime, timezone
 import httpx
 import os
 import logging
+import uvicorn
 
 # Load environment variables
 load_dotenv()
@@ -64,3 +65,14 @@ async def get_profile():
 
     logger.info("Profile data retrieved successfully.")
     return JSONResponse(content=profile_data, headers={"Content-Type": "application/json"})
+
+
+
+@app.get("/")
+def home():
+    return {"message": "Hello!"}
+
+if __name__ == "__main__":
+    
+    port = int(os.environ.get("PORT", 8000))  
+    uvicorn.run(app, host="0.0.0.0", port=port)
